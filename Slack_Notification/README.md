@@ -7,7 +7,7 @@ The official Nagios Slack plugin is terrible, requiring multiple random perl dep
 This method is far simpler and allows you to maintain your Nagios configuration in a single location. The way it's set up also allows the script to be re-used for multiple channels if necessary.
 <br>
 ## Screenshot
-![Screenshot of Notifications](https://cloud.githubusercontent.com/assets/7113258/17087470/b7dc88b6-523d-11e6-978d-5cb263538967.png)
+![Screenshot of Notifications](https://cloud.githubusercontent.com/assets/7113258/17119622/9c77a67a-52f9-11e6-8255-93173b6ef9ed.png)
 <br>
 ## Installation
 
