@@ -40,6 +40,6 @@ Open the notification_slack.sh script and modify the **SLACK_HOSTNAME** and **MO
 <br><br>
 ## Other Information
 
-This script has been tested on multiple servers with different versions of curl. The script accounts for older versions of curl with another command.
+This script has been tested on multiple servers with different versions of curl. 
 
 Please fork and contribute if you find any bugs.
