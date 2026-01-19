@@ -8,7 +8,7 @@ while getopts 'a:b:c:d:e:f:g:y:z:' opt ; do
     d) HOSTOUTPUT=$OPTARG ;;
     e) SERVICEDESC=$OPTARG ;;
     f) SERVICESTATE=$OPTARG ;;
-    g) SERVICEOUTPUT=$OPTARG ;;
+    g) SERVICEOUTPUT=$(echo $OPTARG | sed 's|\\|\\\\|g') ;;
     y) CHANNEL=$OPTARG ;;
     z) WEBHOOK_PATH=$OPTARG ;;
   esac
@@ -19,7 +19,6 @@ SLACK_BOTUSERNAME="nagios-alerts"
 MONITORING_URL="https://nagios_server.domain/nagios"
 SLACK_CHANNEL="#${CHANNEL}"
 WEBHOOK_ADDRESS="https://hooks.slack.com/services/${WEBHOOK_PATH}"
-
 
 if [ -x $HOSTSTATE ]; then
 
@@ -55,8 +54,4 @@ else
 
 fi
 
-curl -X POST --data-urlencode "payload={\"channel\": \"${SLACK_CHANNEL}\", \"username\": \"${SLACK_BOTUSERNAME}\", \"text\": \"${SLACK_MESSAGE}\"}" ${WEBHOOK_ADDRESS}
-if [ $? -ne 0 ]; then
-  # Try again with a method for older versions of curl
-  curl -X POST -d "payload={\"channel\": \"${SLACK_CHANNEL}\", \"username\": \"${SLACK_BOTUSERNAME}\", \"text\": \"${SLACK_MESSAGE}\"}" ${WEBHOOK_ADDRESS}
-fi
+curl -X POST -d "payload={\"channel\": \"${SLACK_CHANNEL}\", \"username\": \"${SLACK_BOTUSERNAME}\", \"text\": \"${SLACK_MESSAGE}\"}" ${WEBHOOK_ADDRESS}
